@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	 
+	 <bean id="student" class="com.capg.beans.Student">
+	 	<constructor-arg value="101" name="id"/>
+	 	<constructor-arg value="Sony" name="name"/>
+	 	<constructor-arg value="50" name="marks"/>	
+	 </bean>
+	 
+	 <bean id="student2" class="com.capg.beans.Student">
+	 	<property name="id" value="102"></property>
+	 	<property name="name" value="Priya"></property>
+	 	<property name="marks" value="90"></property>
+	 	<property name="courses" ref="course1"></property>
+	 </bean>
+	 
+	 <bean id="course1" class="com.capg.beans.Courses">
+	 	<property name="courseId" value="777"></property>
+	 	<property name="courseName" value="AI"></property>	
+	 </bean>
+	 
+</beans>
