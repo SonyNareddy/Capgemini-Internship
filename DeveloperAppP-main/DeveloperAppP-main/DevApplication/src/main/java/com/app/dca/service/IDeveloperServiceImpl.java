@@ -4,7 +4,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Optional;
 import com.app.dca.entity.Developer;
 import com.app.dca.exception.UnknownDeveloperException;
 import com.app.dca.repository.DeveloperRepository;
@@ -19,12 +19,10 @@ public class IDeveloperServiceImpl implements IDeveloperService{
 	@Transactional
 	public Developer addDeveloper(Developer dev)
 	{
-		System.out.println("Inside service addDeveloper"+dev);
+		//System.out.println("Inside service addDeveloper"+dev);
 		return repo.save(dev);
 	}
-	
-	
-	
+
 	@Override
 	public Developer getDeveloper(int devId) throws UnknownDeveloperException
 	{
@@ -43,10 +41,17 @@ public class IDeveloperServiceImpl implements IDeveloperService{
 		return repo.save(dev);
 	}
 
-
-
 	@Override
-	public Developer statusUpdate(Developer dev) {
+	public Developer statusUpdate(Developer dev, int id) {
+		Optional<Developer> up = repo.findById(id);
+		Developer developer = null;
+		if(up.isPresent())
+		{
+			developer = up.get();
+			
+			developer.setBlocked(dev.isBlocked());
+		}
+		
 		return null;
 	}
 }
